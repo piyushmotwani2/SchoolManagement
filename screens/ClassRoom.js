@@ -2,29 +2,24 @@ import * as React from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView, ScrollView, ImageBackground } from 'react-native';
 import ClassesCardComponent from '../components/ClassesCardComponent';
 import ButtonComponent from '../components/ButtonComponent';
-import { Actions } from 'react-native-router-flux';
 
-gotohome = () =>{
-  Actions.home();
-}
 
-gotoconference = () =>{
-  var joined = new Date();
-  var hours = joined.getHours();
-  var minutes = joined.getMinutes();
-  global.joinTime = hours+""+minutes;
+
+// gotoconference = () =>{
+//   var joined = new Date();
+//   var hours = joined.getHours();
+//   var minutes = joined.getMinutes();
+//   global.joinTime = hours+""+minutes;
   
-  console.log(joinTime);
-  Actions.conference();
-}
-
-gotoassignment = () =>{
-  Actions.assignment();
-}
+//   console.log(joinTime);
+//   Actions.conference();
+// }
 
 
 
-const ClassRoom = (props) => {
+
+const Classroom = (props) => {
+
 
   const styles = StyleSheet.create({
     purpleBackground: {
@@ -77,4 +72,4 @@ const ClassRoom = (props) => {
   );
 }
 
-export default ClassRoom;
+export default Classroom;

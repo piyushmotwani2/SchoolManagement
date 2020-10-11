@@ -1,1 +1,9 @@
 [0922/212721.299:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
+[1010/154630.698:ERROR:settings.cc(430)] Settings version is not 5
+[1010/155630.735:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Piyush\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\2463aa73-198c-4db2-a89b-a77848341123: The system cannot find the path specified. (0x3)
+[1010/155630.754:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Piyush\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\43f5488f-8fd7-42d4-891b-7d74e67f8c84: The system cannot find the path specified. (0x3)
+[1010/155630.775:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Piyush\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\483e5d6a-8464-4ea7-bfcc-dac4d67c6d2f: The system cannot find the path specified. (0x3)
+[1010/155630.788:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Piyush\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\e52d5a3c-ee0c-4dfc-8445-c672a3f1a58c: The system cannot find the path specified. (0x3)
+[1010/155630.813:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Piyush\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\ea4963fd-7460-45e1-86d7-c5f1a21cca16: The system cannot find the path specified. (0x3)
+[1010/155630.813:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1012/015010.775:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

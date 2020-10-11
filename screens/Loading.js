@@ -1,31 +1,54 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
-import * as firebase from 'firebase';
+import GlobalState from '../context/GlobalState';
+import firebaseApp from '../firebaseApp'
+import { useNavigation } from '@react-navigation/native';
 
 
 
-export default class Loading extends React.Component {
-    
-    componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            const { navigation } = this.props;
-            if(user){
-                user.updateProfile({
-                    displayName: "stu4A01",
-                });
-                global.user = user;
-                navigation.navigate('Home');
+function Loading() {
+    const db = firebaseApp.firestore();
+    const [state, setState] = useContext(GlobalState);
+    const navigation = useNavigation();
+    useEffect(() => {
+    console.log(state);
+    firebaseApp.auth().onAuthStateChanged(user => {
+        if(user){
+            const subscriber = db.collection("Students").doc(user.displayName).onSnapshot(doc => {
+                const name= doc.data().name;
+                const classPath = doc.data().classSection.path;
+                const rollnum= doc.data().rollnum;
+                getClass(name,classPath,rollnum);
+            });
+
+            const getClass = async(name,regNum,rollnum) =>{
+                await db.doc(regNum).get().then(classnm =>{
+                    let subjectArray = [];
+                    classnm.data().subjects.forEach(sub => {
+                        db.doc(sub.path).get().then(subs => {
+                            subjectArray.push(subs.data());
+                        });
+                    });
+                    console.log(subjectArray);
+                    setState({
+                        user: {
+                            ...user,
+                            name: name,
+                            rollnum: rollnum,
+                            className: classnm.data().name,
+                            regSubjects: subjectArray
+                        }
+                        });
+                    });
             }
-            else{
-                navigation.navigate('Login');
-            }
-        });
-    }
-
-        
-
-
-    render(){
+            console.log(state.user.regSubjects);
+            navigation.navigate('Home');
+        }
+        else{
+            navigation.navigate('Login');
+        }
+    });
+  }, []);
         return(
             <View style = {styles.container}>
                 <Text>Loading...</Text>
@@ -33,7 +56,8 @@ export default class Loading extends React.Component {
             </View>
         );
     }
-}
+
+export default Loading;
 
 const styles = StyleSheet.create({
     container: {
