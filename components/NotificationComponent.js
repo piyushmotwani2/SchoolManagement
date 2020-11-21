@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import ButtonComponent from '../components/ButtonComponent';
 
 const NotificationComponent = (props) => {

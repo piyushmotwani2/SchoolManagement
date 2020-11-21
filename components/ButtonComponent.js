@@ -8,9 +8,7 @@ const ButtonComponent = (props) =>{
         purpleBackground: {
             alignItems: "center",
             marginStart: 20,
-            textAlign:"center",
             justifyContent: "center",
-            textAlignVertical:"center",
             width: props.buttonWidth,
             height: props.buttonHeight,
             borderRadius: 30,
@@ -19,9 +17,7 @@ const ButtonComponent = (props) =>{
         whiteBackground: {
             alignItems: "center",
             marginStart: 20,
-            textAlign:"center",
             justifyContent: "center",
-            textAlignVertical:"center",
             width: props.buttonWidth,
             height: props.buttonHeight,
             borderRadius: 30,
@@ -32,31 +28,22 @@ const ButtonComponent = (props) =>{
         greyBackground :{
             alignItems: "center",
             marginStart: 20,
-            textAlign:"center",
             justifyContent: "center",
-            textAlignVertical:"center",
             width: props.buttonWidth,
             height: props.buttonHeight,
             borderRadius: 30,
             backgroundColor: "rgba(108, 92, 189, 255)"
         },
-        whiteText :{
-         
+        whiteText: {
         fontSize: props.size,
         marginRight: "auto",
         marginLeft: "auto",
-        textAlign: "center",
-        textAlignVertical:"center",
         color: "rgba(255, 255, 255, 255)"
         },
         blackText: {
-             
-             
             fontSize: props.size,
             marginRight: "auto",
             marginLeft: "auto",
-            textAlign: "center",
-            textAlignVertical:"center",
             color: "rgba(0, 0, 0, 255)"
         }
     });

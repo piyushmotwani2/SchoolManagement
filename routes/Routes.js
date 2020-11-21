@@ -6,6 +6,9 @@ import Login from '../screens/Login';
 import Loading from '../screens/Loading';
 import Profile from '../screens/Profile';
 import Classroom from '../screens/Classroom';
+import CreateRoom from '../screens/CreateRoom';
+import Notifications from '../screens/Notifications';
+import Chat from '../screens/Chat';
 
 const Stack = createStackNavigator();
 
@@ -23,8 +26,20 @@ function Routes() {
         component = {Classroom}/>
 
         <Stack.Screen
+        name = "CreateRoom"
+        component = {CreateRoom}/>
+
+        <Stack.Screen
         name = "Home"
         component = {Home}/>
+
+        <Stack.Screen
+        name = "Chat"
+        component = {Chat}/>
+
+        <Stack.Screen
+        name = "Notifications"
+        component = {Notifications}/>
 
         <Stack.Screen
         name = "Login"
@@ -34,6 +49,7 @@ function Routes() {
         name = "Profile"
         component = {Profile}/>
       </Stack.Navigator>
+
     </NavigationContainer>
     );
 }

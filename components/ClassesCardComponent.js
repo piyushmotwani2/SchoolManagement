@@ -9,7 +9,7 @@ const ClassesCardComponent = (props) => {
         flexDirection: "row",
         alignItems: "center",
         paddingStart: "2%",
-        width: "90%",
+        width: "100%",
         height: 70,
         borderRadius: 10,
         backgroundColor: "rgba(255, 255, 255, 255)",

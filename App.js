@@ -10,8 +10,10 @@ export default function App() {
       classPath: "",
       rollnum: "",
       className: "",
+      email: "",
       regSubjects: []
-    }
+    },
+    currentSubject: {}
   });
   return (
     <GlobalState.Provider value={[state, setState]}>

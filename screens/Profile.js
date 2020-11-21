@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import {View,Text,TextInput,TouchableOpacity, ScrollView,ImageBackground, ImageBackgroundBase} from 'react-native';
+import {View,Text,TextInput,TouchableOpacity, ScrollView,ImageBackground, Dimensions} from 'react-native';
 import ClassesCardComponent from '../components/ClassesCardComponent';
 import GlobalState from '../context/GlobalState'; 
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 function Profile() {
   const [state, setState] = useContext(GlobalState);
   const navigation = useNavigation();
-
+  const screenWidth = Dimensions.get('window').width;
   return (
     <View style = {{
         "alignItems": "flex-start",
@@ -49,7 +49,7 @@ function Profile() {
       {
         state.user.regSubjects != undefined && 
         state.user.regSubjects.map((regSubjects,index) => (
-          <ClassesCardComponent key={index} subID = {regSubjects.subjectID} subName = {regSubjects.name} status = "normalCard"/>
+          <ClassesCardComponent key={index} width = {screenWidth} subID = {regSubjects.subjectID} subName = {regSubjects.name} status = "normalCard"/>
           ))
       }
     </View>

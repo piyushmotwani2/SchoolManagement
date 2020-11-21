@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import firebaseApp from '../firebaseApp'
 
 import Schedule from '../screens/Schedule';
 import Attendance from '../screens/Attendance';
@@ -64,6 +65,8 @@ function TabStack() {
 
 export default class Home extends React.Component {
 
+
+
   constructor(props){
     super(props);
     
@@ -90,7 +93,7 @@ export default class Home extends React.Component {
     </View>
     <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:"-10%", marginBottom:"10%", marginRight:"10%",marginLeft:"10%"}}>
       <View style={{justifyContent:"center",width: 50,height: 50,backgroundColor: '#FFFFFF',borderRadius: 120,shadowColor: '#000000',shadowOffset: { width: 0, height: 4 },shadowOpacity: 0.9,shadowRadius: 3,elevation: 4}}>
-        <TouchableOpacity onPress = {() => navigation.navigate('Profile')}><ImageBackground source={require('../assets/notification.png')} style={{padding:"5%",alignContent:"center",width: 25, height: 25,marginLeft:"auto",marginRight:"auto"}}></ImageBackground></TouchableOpacity>
+        <TouchableOpacity onPress = {() => navigation.navigate('CreateRoom')}><ImageBackground source={require('../assets/notification.png')} style={{padding:"5%",alignContent:"center",width: 25, height: 25,marginLeft:"auto",marginRight:"auto"}}></ImageBackground></TouchableOpacity>
       </View>
       <View>
       <TouchableOpacity onPress = {() => navigation.navigate('Profile')}><ImageBackground source={require('../assets/avatar.jpg')} imageStyle={{ borderRadius: 50, borderWidth:3, borderColor: "rgba(108, 92, 189, 255)" }} style={{width: 50, height: 50}}></ImageBackground></TouchableOpacity>

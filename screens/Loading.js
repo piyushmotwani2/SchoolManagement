@@ -11,7 +11,7 @@ function Loading() {
     const [state, setState] = useContext(GlobalState);
     const navigation = useNavigation();
     useEffect(() => {
-    console.log(state);
+
     firebaseApp.auth().onAuthStateChanged(user => {
         if(user){
             const subscriber = db.collection("Students").doc(user.displayName).onSnapshot(doc => {
@@ -29,20 +29,20 @@ function Loading() {
                             subjectArray.push(subs.data());
                         });
                     });
-                    console.log(subjectArray);
                     setState({
                         user: {
                             ...user,
                             name: name,
                             rollnum: rollnum,
                             className: classnm.data().name,
-                            regSubjects: subjectArray
-                        }
+                            regSubjects: subjectArray,
+                            email: user.email
+                        },
+                        currentSubject: subjectArray[0]
                         });
+                    navigation.navigate('Home');
                     });
             }
-            console.log(state.user.regSubjects);
-            navigation.navigate('Home');
         }
         else{
             navigation.navigate('Login');
