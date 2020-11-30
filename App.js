@@ -4,17 +4,19 @@ import GlobalState from './context/GlobalState';
 
 
 export default function App() {
-  const [state, setState] = useState({
-    user: {
-      name: "",
-      classPath: "",
-      rollnum: "",
-      className: "",
-      email: "",
-      regSubjects: []
-    },
-    currentSubject: {}
-  });
+  const [state, setState] = useState({});
+  //   user: {
+  //     name: "",
+  //     classPath: "",
+  //     rollnum: "",
+  //     className: "",
+  //     email: "",
+  //     type: "",
+  //     regSubjects: [],
+  //     timetable: []
+  //   },
+  //   currentSubject: {}
+  // });
   return (
     <GlobalState.Provider value={[state, setState]}>
       <Routes />

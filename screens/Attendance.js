@@ -3,11 +3,18 @@ import { View, Text, SafeAreaView, Dimensions } from 'react-native';
 import GlobalState from '../context/GlobalState';
 import {Picker} from '@react-native-community/picker';
 import { PieChart } from 'react-native-chart-kit'
+import { sub } from 'react-native-reanimated';
 
 const Attendance = () => {
   const [state, setState] = useContext(GlobalState);
   const screenWidth = Dimensions.get('window').width;
-  console.log(state.user.regSubjects)
+  
+
+  useEffect(() => {
+    console.log(state.user.regSubjects)
+  })
+
+  if(state.user.type =="student"){
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor:"#FFF", alignItems:"center"}}>
@@ -39,26 +46,19 @@ const Attendance = () => {
       }
     } >
       <Picker
-      selectedValue = {state.currentSubject}
-      onValueChange = {(ItemValue,ItemIndex) => console.log(ItemIndex)}
-      style = {
-      {
-        "fontSize": 14,
-        "color": "rgba(18, 18, 18, 255)",
-        "textAlign":"center",
-        "height":25,
-        "width" :100
-      }
-    } >
-      {/* {console.log(state.user.regSubjects)}
-      {state.user.regSubjects != undefined && 
+  selectedValue={state.user.name}
+  style={{height: 50, width: 100}}
+  onValueChange={(itemValue, itemIndex) =>
+    setSubIndex(itemIndex)
+  }>
+  {
+        state.user.regSubjects != undefined && 
         state.user.regSubjects.map((regSubject,index) => (
           <Picker.Item key={index} label = {regSubject.subjectID} value = {regSubject.subjectID}/>
-        ))} */}
-      <Picker.Item label = "MAT401" value = "MAT401"/>
-      <Picker.Item label = "ENG401" value = "ENG401"/>
-      {console.log(state.currentSubject)}
-    </Picker>
+          ))
+      }
+</Picker>
+        
     </View>
       </View>
       <View style={{flexDirection:"row", justifyContent: "space-around", width:"100%"}}>
@@ -118,7 +118,14 @@ const Attendance = () => {
       </View>
       </View>
     </SafeAreaView>
-  );
+  );}
+  else{
+    return(
+      <View>
+        <Text>Faculty</Text>
+      </View>
+    )
+  }
 }
 
 export default Attendance;

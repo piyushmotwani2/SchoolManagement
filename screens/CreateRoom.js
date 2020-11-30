@@ -12,14 +12,12 @@ export default function CreateRoom() {
   const [roomID, setRoomID] = useState("");
   const navigation = useNavigation();
 return(
-    <ImageBackground source={require('../assets/line.png')} style={{width: '100%', height: '100%'}}>
-    <View style = {
-      {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent":"center"
-      }
-    } >
+    <View style ={{
+      height: "100%",
+      marginTop: "10%"
+    }}>
+    <TouchableOpacity onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/arrow_back.png')} style={{alignContent:"flex-start",marginTop:"auto",marginBottom:"auto",width: 10, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
+
 
     <View style = {
       {
@@ -68,7 +66,7 @@ return(
         "justifyContent":"center",
         "marginLeft":"auto",
         "marginRight":"auto",
-        "backgroundColor": "rgba(244, 244, 254, 255)"
+        "backgroundColor": "rgba(255, 255, 255, 255)"
       }
     }
     />
@@ -112,7 +110,6 @@ return(
     </View> */}
     </View>
     </View>
-    </ImageBackground>
 
   );
     }

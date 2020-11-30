@@ -167,7 +167,6 @@ const ClassesCardComponent = (props) => {
             <View style = {styles.normalBackground} >
         <Text style = {styles.textStyle} > {props.subID} </Text>
         <Text numberOfLines={1} style = {styles.textStyleSub} > {props.subName} </Text>
-        <ButtonComponent buttonWidth="20%" buttonHeight="35%" type="primary" text="View" size={14}></ButtonComponent>
         </View>
       </View>
     </View>
@@ -184,7 +183,7 @@ if(props.status == "active"){
               display: props.cardshow
             }
           }>
-          <Text style = {styles.activeTime}> {props.time} </Text>
+          <Text style = {styles.activeTime}> {props.day} - {props.time} </Text>
           </View>
           <View style={{
             "alignItems": "center",
@@ -208,7 +207,7 @@ else if(props.status == "leisure"){
               display: props.cardshow
             }
           }>
-          <Text style = {styles.inactiveTime}> {props.time} </Text>
+          <Text style = {styles.inactiveTime}> {props.day} - {props.time} </Text>
           </View>
           <View style={{
             "alignItems": "center",
@@ -239,7 +238,6 @@ else if(props.status == "assignment"){
           }}>
             <View style = {styles.whiteBackground} >
         <Text style = {styles.blackText} > {props.subID} </Text>
-        <ButtonComponent buttonWidth="45%" buttonHeight="60%" type="primary" text="View Assignment" size={14} ></ButtonComponent>
         </View>
       </View>
     </View>
@@ -274,7 +272,7 @@ else if(props.status == "notice"){
               display: props.cardshow
             }
           }>
-          <Text style = {styles.inactiveTime}> {props.time} </Text>
+          <Text style = {styles.inactiveTime}> {props.day} - {props.time} </Text>
           </View>
           <View style={{
             "alignItems": "center",

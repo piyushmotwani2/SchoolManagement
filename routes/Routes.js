@@ -5,10 +5,16 @@ import Home from '../screens/Home'
 import Login from '../screens/Login';
 import Loading from '../screens/Loading';
 import Profile from '../screens/Profile';
-import Classroom from '../screens/Classroom';
 import CreateRoom from '../screens/CreateRoom';
 import Notifications from '../screens/Notifications';
+import LearnLinear from '../util/LearnLinear';
+import Classroom from '../screens/Classroom';
 import Chat from '../screens/Chat';
+import Options from '../screens/Options'
+import Assignment from '../screens/Assignment'
+import Quiz from '../screens/Quiz'
+import Contact from '../screens/Contact'
+
 
 const Stack = createStackNavigator();
 
@@ -22,6 +28,22 @@ function Routes() {
         component = {Loading}/>
 
         <Stack.Screen
+        name = "Quiz"
+        component = {Quiz}/>
+
+        <Stack.Screen
+        name = "Options"
+        component = {Options}/>
+
+        <Stack.Screen
+        name = "Assignment"
+        component = {Assignment}/>
+
+        <Stack.Screen
+        name = "LearnLinear"
+        component = {LearnLinear}/>
+
+        <Stack.Screen
         name = "Classroom"
         component = {Classroom}/>
 
@@ -32,6 +54,10 @@ function Routes() {
         <Stack.Screen
         name = "Home"
         component = {Home}/>
+
+        <Stack.Screen
+        name = "Contact"
+        component = {Contact}/>
 
         <Stack.Screen
         name = "Chat"

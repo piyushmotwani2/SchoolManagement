@@ -1,16 +1,17 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, ScrollView, Picker, ImageBackground } from 'react-native';
 import NotificationComponent from '../components/NotificationComponent';
 
 
-const Notifications = ({ navigation }) => {
-
+export default function Notifications(){
+  const navigation = useNavigation();
   
   return (
     <ScrollView style={{ flex: 1, backgroundColor:"#FFF"}} contentContainerStyle={{flex: 1,justifyContent:"flex-start" }}>
-              <View style={{flexDirection:"row",justifyContent:"space-between", backgroundColor:"#FFF",width:"100%",height:"12%",shadowColor:"#000",shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.9,shadowRadius:3,elevation:4}}>
+              <View style={{flexDirection:"row",justifyContent:"space-around", marginTop: "10%", backgroundColor:"#FFF",width:"100%",height:"12%",shadowColor:"#000",shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.9,shadowRadius:3,elevation:4}}>
+                <TouchableOpacity onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/arrow_back.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 10, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
                 <Text style={{ fontSize:24, color:"#121212", textAlignVertical:"center",marginLeft:"10%",marginRight:"10%",}}>Notifications</Text>
-                <TouchableOpacity ><ImageBackground source={require('../assets/arrow_back.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 10, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
               </View>
               <View style={{justifyContent:"space-evenly",marginTop:"10%"}}>
                 <View style={{justifyContent:"center", backgroundColor:"#FFF",width:"100%",height:"40%"}}>
@@ -27,6 +28,3 @@ const Notifications = ({ navigation }) => {
     </ScrollView>
   );
 }
-
-
-export default Notifications;
