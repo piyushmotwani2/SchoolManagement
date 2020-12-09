@@ -14,7 +14,8 @@ import Options from '../screens/Options'
 import Assignment from '../screens/Assignment'
 import Quiz from '../screens/Quiz'
 import Contact from '../screens/Contact'
-
+import Material from '../screens/Material'
+import QuizEdit from '../screens/QuizEdit'
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,14 @@ function Routes() {
         <Stack.Screen
         name = "Loading"
         component = {Loading}/>
+
+        <Stack.Screen
+        name = "QuizEdit"
+        component = {QuizEdit}/>
+
+        <Stack.Screen
+        name = "Material"
+        component = {Material}/>
 
         <Stack.Screen
         name = "Quiz"

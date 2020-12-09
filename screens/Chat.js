@@ -13,7 +13,7 @@ export default function Chat({route}) {
   const navigation = useNavigation();
   const [messages, setMessages] = useState([]);
   const {roomID} = route.params;
-  const chatsRef = db.collection("Chats/" + roomID + "/chats");
+  const chatsRef = db.collection(roomID);
   useEffect(() => {
     const unsubscribe = chatsRef.onSnapshot((querySnapshot) => {
         const messagesFirestore = querySnapshot

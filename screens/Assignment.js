@@ -1,16 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { TouchableOpacity, StyleSheet, Button, Platform, View, Text, SafeAreaView, ScrollView, ImageBackground, Linking } from 'react-native';
 import ClassesCardComponent from '../components/ClassesCardComponent';
-import ButtonComponent from '../components/ButtonComponent';
 import * as DocumentPicker from 'expo-document-picker';
 import firebaseApp from '../firebaseApp';
 import {useNavigation} from '@react-navigation/native'
 import GlobalState from '../context/GlobalState';
-import * as FileSystem from 'expo-file-system';
-import * as Permissions from 'expo-permissions';
-import * as MediaLibrary from 'expo-media-library';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import * as IntentLauncher from 'expo-intent-launcher';
 
 
 export default function Assignment({route}){
@@ -55,8 +50,8 @@ export default function Assignment({route}){
   return (
     <View>
       <View style={{flexDirection:"row",marginTop: "10%",justifyContent:"space-between", backgroundColor:"#FFF",width:"100%",height:"10%",shadowColor:"#000",shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.9,shadowRadius:3,elevation:4}}>
-  <Text style={{ fontSize:24, color:"#121212", textAlignVertical:"center",marginLeft:"10%",marginRight:"10%",}}>{state.user.regSubjects[st].subjectID}</Text>
-        <TouchableOpacity onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/close.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 18, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
+        <Text style={{ fontSize:24, color:"#121212", textAlignVertical:"center",marginTop:"5%",marginLeft:"10%",marginRight:"10%",}}>{state.user.regSubjects[st].subjectID}</Text>
+        <TouchableOpacity style={{marginRight:"10%",}} onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/close.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 18, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
       </View>
       {state.user.type == "student" && (
         <View>
@@ -65,7 +60,6 @@ export default function Assignment({route}){
         <Button color = "rgba(108, 92, 189, 255)"
         title="Download Assignment" 
         onPress = {async () => {
-
           firebaseApp.storage().ref('Assignments/' + state.user.regSubjects[st].subjectID + '/Question.pdf').getDownloadURL().then(url => {
             Linking.openURL(url);
           });
@@ -105,10 +99,10 @@ export default function Assignment({route}){
           <View style={{flexDirection:"row",justifyContent:"space-around", marginTop:"10%", width:"85%", alignItems:"center", marginLeft:"auto",marginRight:"auto"}}>
           <View>
       <View>
-        <Button onPress={showDatepicker} title="Show date picker" />
+        <Button onPress={showDatepicker} title="Select Deadline Date" />
       </View>
       <View>
-        <Button onPress={showTimepicker} title="Show time picker" />
+        <Button onPress={showTimepicker} title="Select Deadline Time" />
       </View>
       {show && (
         <DateTimePicker

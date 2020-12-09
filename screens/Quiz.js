@@ -9,10 +9,11 @@ import QuizComponent from '../components/QuizComponent'
 
 
 export default function Quiz() {
-    const [state,setState] = useState({dataQuestion:[],score: 0,submitted: false})
+    const [state,setState] = useContext(GlobalState);
+    const [quizState,setQuizState] = useState({dataQuestion:[],score: 0,submitted: false})
     const navigation = useNavigation();
     useEffect(() => {
-        setState({
+        setQuizState({
             dataQuestion: quizData,
             score:0
         })
@@ -20,9 +21,9 @@ export default function Quiz() {
 
     const onAnswered = (response) =>{
         if(response){
-            const update = state.score;
-            setState({
-                ...state,
+            const update = quizState.score;
+            setQuizState({
+                ...quizState,
                 score: parseInt(update+1)
             })
         }
@@ -36,13 +37,13 @@ export default function Quiz() {
         </View>
         <View style={{marginLeft:"auto",marginRight:"auto",marginTop:"15%", width:"80%"}}>
             {
-                state.dataQuestion.map((question,index) => (
+                quizState.dataQuestion.map((question,index) => (
                     <QuizComponent key = {index} onAnswered = {onAnswered} question = {question.question} options = {question.options} correctIndex = {question.correctIndex}/>
                 ))
             }
         <View style={{marginTop: "10%"}}>
-        <Button title = "Submit test" onPress = {() => {setState({...state,submitted: true})}}></Button>
-        {state.submitted && (<Text>Your final Score is {state.score}</Text>)}
+        <Button title = "Submit test" onPress = {() => {setState({...state,quizSubmitted:true,quizScore: quizState.score});navigation.goBack();}}></Button>
+        
         </View> 
         </View>
         </ScrollView>

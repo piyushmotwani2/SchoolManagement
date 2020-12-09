@@ -59,6 +59,7 @@ function TabStack() {
 
 export default function Home() {
   const navigation = useNavigation();
+
   return (
     <NavigationContainer independent={true}>
     {/* <View style={{alignItems: "flex-start"}}>

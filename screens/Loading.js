@@ -4,6 +4,9 @@ import GlobalState from '../context/GlobalState';
 import firebaseApp from '../firebaseApp'
 import { useNavigation } from '@react-navigation/native';
 import { useScreens } from 'react-native-screens';
+import classes from '../Utilties/ClassSection';
+import users from '../Utilties/Users';
+import subjects from '../Utilties/Subject';
 
 
 
@@ -13,15 +16,37 @@ function Loading() {
     const navigation = useNavigation();
     useEffect(() => {
         // firebaseApp.auth().signOut();
+        // firebaseApp.auth().createUserWithEmailAndPassword('shruti.mishra@vitap.ac.in','testpass123').then(user=>{
+        //     console.log('userCreated');
+        // })
+        // firebaseApp.auth().signInWithEmailAndPassword('shruti.mishra@vitap.ac.in','testpass123').then(user=>{
+        //     console.log('userSigned in')
+        // })
+        
+        // firebaseApp.auth().createUserWithEmailAndPassword('rama.sathish@vitap.ac.in','testpass456').then(user=>{
+        //     console.log('userCreated');
+        // })
+
+        // firebaseApp.auth().signInWithEmailAndPassword('rama.sathish@vitap.ac.in','testpass456').then(user=>{
+        //     console.log('userSigned in')
+        // })
+        // firebaseApp.auth().currentUser.updateProfile({
+        //     displayName: 'fac1003'
+        // })
     
     firebaseApp.auth().onAuthStateChanged(user => {
         if(user){
-            const subscriber = db.collection("Students").doc(user.displayName).onSnapshot(doc => {
+            // firebaseApp.auth().currentUser.updateProfile({
+            //     displayName: 'fac1003'
+            // })
+            const subscriber = db.collection("Users").doc(user.displayName).onSnapshot(doc => {
                 if(doc.data().type == "student"){
                     const name = doc.data().name;
-                    const classPath = doc.data().classSection.path;
+                    const classPath = doc.data().classSection;
                     const rollnum= doc.data().rollnum;
-                    getClass(name,classPath,rollnum);
+                    const attendance = doc.data().attendance;
+                    const id = doc.data().id
+                    getClass(name,classPath,rollnum,attendance,id);
                 }
                 else if(doc.data().type == "faculty"){
                     const name = doc.data().name;
@@ -51,12 +76,12 @@ function Loading() {
                 navigation.navigate('Home');
             }
 
-            const getClass = async(name,regNum,rollnum) =>{
+            const getClass = async(name,regNum,rollnum,attendance,id) =>{
                 await db.doc(regNum).get().then(classnm =>{
                     let subjectArray = [];
-                    classnm.data().subjects.forEach(sub => {
-                        db.doc(sub.path).get().then(subs => {
-                            subjectArray.push(subs.data());
+                    classnm.data().subjects.forEach(async(sub) => {
+                        await db.doc(sub).get().then(async(subs) => {
+                            await subjectArray.push(subs.data());
                         });
                     });
                     setState({
@@ -68,8 +93,10 @@ function Loading() {
                             regSubjects: subjectArray,
                             email: user.email,
                             type: "student",
-                            timetable: classnm.data().Slots
-                        },
+                            timetable: classnm.data().Slots,
+                            attendance: attendance,
+                            id: id
+                        }
                     });
                     navigation.navigate('Home');
                 });
@@ -79,6 +106,22 @@ function Loading() {
             navigation.navigate('Login');
         }
     });
+
+    // classes.map(async function(clas){
+    //     await firebaseApp.firestore().doc('ClassSection/' + clas.id).set(clas).then(()=>{
+    //         console.log(clas.id," Updated");
+    //     })
+    // });
+    // users.map(async function(clas){
+    //     await firebaseApp.firestore().doc('Users/' + clas.id).set(clas).then(()=>{
+    //         console.log(clas.id," Updated");
+    //     })
+    // });
+    // subjects.map(async function(clas){
+    //     await firebaseApp.firestore().doc('Subjects/' + clas.id).set(clas).then(()=>{
+    //         console.log(clas.id," Updated");
+    //     })
+    // });
   }, []);
         return(
             <View style = {styles.container}>

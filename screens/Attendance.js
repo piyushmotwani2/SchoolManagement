@@ -3,19 +3,16 @@ import { View, Text, SafeAreaView, Dimensions } from 'react-native';
 import GlobalState from '../context/GlobalState';
 import {Picker} from '@react-native-community/picker';
 import { PieChart } from 'react-native-chart-kit'
-import { sub } from 'react-native-reanimated';
 
 const Attendance = () => {
   const [state, setState] = useContext(GlobalState);
   const screenWidth = Dimensions.get('window').width;
-  
-
-  useEffect(() => {
-    console.log(state.user.regSubjects)
-  })
+  const [subIndex,setSubIndex] = useState(0);
+  const [subjectSelected,setSubjectSelected] = useState('MAT401');
 
   if(state.user.type =="student"){
   return (
+    
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor:"#FFF", alignItems:"center"}}>
       <View style = {
@@ -46,10 +43,11 @@ const Attendance = () => {
       }
     } >
       <Picker
-  selectedValue={state.user.name}
-  style={{height: 50, width: 100}}
-  onValueChange={(itemValue, itemIndex) =>
-    setSubIndex(itemIndex)
+  selectedValue={subjectSelected}
+  style={{height: "100%", width: "100%"}}
+  onValueChange={(itemValue, itemIndex) => {
+    setSubIndex(itemIndex);
+    setSubjectSelected(itemValue);}
   }>
   {
         state.user.regSubjects != undefined && 
@@ -70,7 +68,7 @@ const Attendance = () => {
           "color": "rgba(108, 92, 189, 255)",
           "marginTop": 50
         }
-      } > 25 </Text>
+      } > {state.user.regSubjects[subIndex] == undefined ? 25 : state.user.regSubjects[subIndex].totalClasses} </Text>
       <Text style = {
         {
           "fontSize": 15,
@@ -87,7 +85,7 @@ const Attendance = () => {
           "textAlign":"center",
           "marginTop": 50
         }
-      } > 20 </Text>
+      } > {state.user.attendance[subIndex]} </Text>
         <Text style = {
         {
           "fontSize": 15,
@@ -101,8 +99,8 @@ const Attendance = () => {
       <PieChart
         data={
           [
-            { name: 'Attended', attended: 20, color: '#6C5CBD'},
-            { name: 'Absent', attended: 5, color: 'rgba(255, 255, 255, 1)'}
+            { name: 'Attended', attended: state.user.attendance[subIndex], color: '#6C5CBD'},
+            { name: 'Absent', attended: state.user.regSubjects[subIndex] == undefined ? 5 : state.user.regSubjects[subIndex].totalClasses - state.user.attendance[subIndex] , color: 'rgba(0, 0, 0, 1)'}
           ]
         }
         width={screenWidth}

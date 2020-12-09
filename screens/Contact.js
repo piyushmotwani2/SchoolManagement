@@ -14,16 +14,16 @@ const navigation = useNavigation();
 const [email,setEmail] = useState("");
 
 useEffect(() =>{
-    firebaseApp.firestore().doc(state.user.regSubjects[st].Faculty).get().then(fac=>{
-        setEmail(fac.email);
+    firebaseApp.firestore().doc(state.user.regSubjects[st].faculty).get().then(fac=>{
+        setEmail(fac.data().email);
     })
 })
 
 return (
 <View style ={{height: "100%"}}>
     <View style={{flexDirection:"row",marginTop: "10%",justifyContent:"space-between", backgroundColor:"#FFF",width:"100%",height:"10%",shadowColor:"#000",shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.9,shadowRadius:3,elevation:4}}>
-    <Text style={{ fontSize:24, color:"#121212", textAlignVertical:"center",marginLeft:"10%",marginRight:"10%",}}>{state.user.regSubjects[st].subjectID}</Text>
-    <TouchableOpacity onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/close.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 18, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
+    <Text style={{ fontSize:24, color:"#121212", textAlignVertical:"center",marginTop:"5%",marginLeft:"10%",marginRight:"10%",}}>{state.user.regSubjects[st].subjectID}</Text>
+        <TouchableOpacity style={{marginRight:"10%",}} onPress = {() => navigation.goBack()}><ImageBackground source={require('../assets/close.png')} style={{alignContent:"center",marginTop:"auto",marginBottom:"auto",width: 18, height: 18,marginLeft:"10%",marginRight:"10%",}}></ImageBackground></TouchableOpacity>
     </View>
 
     <TextInput 
@@ -46,6 +46,7 @@ return (
       }
     }
     />
+    <Button title= "Ask Doubt" onPress = {() => Linking.openURL('mailto:'+email+'?subject='+ state.user.regSubjects[st].subjectID + '%20Doubt' + '&body=' + doubt)}></Button>
 </View>
 );
 }
